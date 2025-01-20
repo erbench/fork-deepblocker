@@ -65,8 +65,9 @@ class AutoEncoder(nn.Module):
         return x
  
     def get_tuple_embedding(self, t1):
+        t1 = t1.to(device=get_device())
         with torch.no_grad():
-            return self.encoder(t1).detach().numpy()
+            return self.encoder(t1).detach().cpu().numpy()
 
 
 class AutoEncoderTrainer:
